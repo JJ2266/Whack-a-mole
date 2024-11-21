@@ -20,4 +20,8 @@ public class sceneManagement : MonoBehaviour
     {
         SceneManager.LoadScene("SampleScene");
     }
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }
