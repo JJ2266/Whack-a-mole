@@ -7,40 +7,41 @@ using UnityEngine.SceneManagement;
 
 public class logic : MonoBehaviour
 {
-    [SerializeField]Slider timer;
-    [SerializeField]float timeRemaining;
+    [SerializeField] Slider timer;
+    public float MaxtimeRemaining;
+    [SerializeField] float currenttimeRemaining;
     
 
     // Start is called before the first frame update
     void Start()
     {
-      
+        currenttimeRemaining = MaxtimeRemaining;
     }
 
     // Update is called once per frame
     void Update()
     {
-        timeRemaining -= Time.deltaTime;
+        currenttimeRemaining -= Time.deltaTime;
         
         
         
-        timer.value = timeRemaining;
+        timer.value = currenttimeRemaining;
 
         if (timer.value <= 0 )
         {
             gameOver();
         }
 
-        if (timeRemaining >= 10)
+        if (currenttimeRemaining >= MaxtimeRemaining)
         {
-            timeRemaining = 10;
+            currenttimeRemaining = MaxtimeRemaining;
         }
         
     }
      public float addTime(float amount)
     {
-        timeRemaining += amount;
-        return timeRemaining;
+        currenttimeRemaining += amount;
+        return currenttimeRemaining;
         
     }
 

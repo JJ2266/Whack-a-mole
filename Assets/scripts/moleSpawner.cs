@@ -10,6 +10,7 @@ public class moleSpawner : MonoBehaviour
     [SerializeField] Canvas canvas;
     mole molescript;
     score scorescript;
+    logic gamemanager;
     public float timeBetweenSpawns;
     float elapsed = 0;
     float TotalTimeelapsed = 0;
@@ -17,7 +18,7 @@ public class moleSpawner : MonoBehaviour
     void Start()
     {
     
-        
+        gamemanager = FindObjectOfType<logic>();
     }
 
     // Update is called once per frame
@@ -37,7 +38,7 @@ public class moleSpawner : MonoBehaviour
     }
     private void spawn()
     {
-
+        //spawn circles
         if(TotalTimeelapsed<= 20)
         {
             GameObject g = Instantiate(molePrefabs[0], canvas.transform);
@@ -45,22 +46,28 @@ public class moleSpawner : MonoBehaviour
             float y = Random.Range(50, canvas.GetComponent<RectTransform>().rect.height);
             g.transform.position = new Vector2(x, y);
         }
+        //start spawning triangles
         if (TotalTimeelapsed >= 20 && TotalTimeelapsed < 40)
         {
+            gamemanager.MaxtimeRemaining = 9;
             GameObject g = Instantiate(molePrefabs[Random.Range(0,6)], canvas.transform);
             float x = Random.Range(50, canvas.GetComponent<RectTransform>().rect.width);
             float y = Random.Range(50, canvas.GetComponent<RectTransform>().rect.height);
             g.transform.position = new Vector2(x, y);
         }
+        //start spawning squares
         if (TotalTimeelapsed >= 40 && TotalTimeelapsed < 60)
         {
+            gamemanager.MaxtimeRemaining = 8;
             GameObject g = Instantiate(molePrefabs[Random.Range(0, 7)], canvas.transform);
             float x = Random.Range(50, canvas.GetComponent<RectTransform>().rect.width);
             float y = Random.Range(50, canvas.GetComponent<RectTransform>().rect.height);
             g.transform.position = new Vector2(x, y);
         }
+        //start spawning hexagons
         if (TotalTimeelapsed >= 60)
         {
+            gamemanager.MaxtimeRemaining = 6;
             GameObject g = Instantiate(molePrefabs[Random.Range(0, 8)], canvas.transform);
             float x = Random.Range(50, canvas.GetComponent<RectTransform>().rect.width);
             float y = Random.Range(50, canvas.GetComponent<RectTransform>().rect.height);
